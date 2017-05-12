@@ -16,10 +16,16 @@ namespace MyWork.Controllers
         private 客戶資料Entities db = new 客戶資料Entities();
 
         // GET: 客戶資料
-        public ActionResult Index()
+        public ActionResult Index(String keyword)
         {
             var all = db.客戶資料.AsQueryable();
             var data = all.Where(p => p.是否已刪除 == false);
+
+            if (!String.IsNullOrEmpty(keyword))
+            {
+                data = data.Where(p => p.客戶名稱.Contains(keyword));
+            }
+
             return View(data);
         }
 
