@@ -53,15 +53,14 @@
             @Html.LabelFor(model => model.手機, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.手機, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.手機, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.手機, "", new { @class = "text-danger" })例如0911-123456
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.電話, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.電話, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.電話, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.電話, new { htmlAttributes = new { @class = "form-control" } })例如02-12345678
             </div>
         </div>
 

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyWork.Models;
+using System.Data.Entity.Validation;
 
 namespace MyWork.Controllers
 {
@@ -17,7 +18,7 @@ namespace MyWork.Controllers
         // GET: 客戶銀行資訊
         public ActionResult Index()
         {
-            var 客戶銀行資訊 = db.客戶銀行資訊.Include(客 => 客.客戶資料);
+            var 客戶銀行資訊 = db.客戶銀行資訊.Include(客 => 客.客戶資料).Where(p=>p.是否已刪除 == false);
             return View(客戶銀行資訊.ToList());
         }
 
@@ -115,8 +116,16 @@ namespace MyWork.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶銀行資訊 客戶銀行資訊 = db.客戶銀行資訊.Find(id);
-            db.客戶銀行資訊.Remove(客戶銀行資訊);
-            db.SaveChanges();
+            //db.客戶銀行資訊.Remove(客戶銀行資訊);
+            客戶銀行資訊.是否已刪除 = true;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                throw ex;
+            }
             return RedirectToAction("Index");
         }
 

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyWork.Models;
+using System.Data.Entity.Validation;
 
 namespace MyWork.Controllers
 {
@@ -17,8 +18,18 @@ namespace MyWork.Controllers
         // GET: 客戶資料
         public ActionResult Index()
         {
-            return View(db.客戶資料.ToList());
+            var all = db.客戶資料.AsQueryable();
+            var data = all.Where(p => p.是否已刪除 == false);
+            return View(data);
         }
+
+        // GET: 客戶資料/Query
+        //public ActionResult Query()
+        //{
+        //    var all = db.客戶資料.AsQueryable();
+        //    var data = all.Where(p => p.是否已刪除 == false); 
+        //    return View(data);
+        //}
 
         // GET: 客戶資料/Details/5
         public ActionResult Details(int? id)
@@ -118,8 +129,16 @@ namespace MyWork.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             客戶資料 客戶資料 = db.客戶資料.Find(id);
-            db.客戶資料.Remove(客戶資料);
-            db.SaveChanges();
+            客戶資料.是否已刪除 = true;
+            //db.客戶資料.Remove(客戶資料);
+            try
+            {
+                db.SaveChanges();
+            }catch (DbEntityValidationException ex)
+            {
+                throw ex;
+            }
+       
             return RedirectToAction("Index");
         }
 
