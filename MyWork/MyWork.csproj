@@ -214,6 +214,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\VWLISTCOUNTController.cs" />
     <Compile Include="Controllers\客戶聯絡人Controller.cs" />
@@ -431,6 +432,7 @@
     <Content Include="Views\VWLISTCOUNT\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\客戶分類.cshtml" />
     <Content Include="Views\客戶資料\客戶聯絡人_批次清單.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
