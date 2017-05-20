@@ -3,10 +3,14 @@ namespace MyWork.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+    using System.Web.Security;
+
+
     [MetadataType(typeof(客戶資料MetaData))]
     public partial class 客戶資料
     {
+        public void 對密碼進行雜湊運算() { this.密碼 = FormsAuthentication.HashPasswordForStoringInConfigFile(this.密碼, "SHA1"); }
+　　　　　
     }
     
     public partial class 客戶資料MetaData
@@ -36,7 +40,13 @@ namespace MyWork.Models
         [EmailAddress]
         [StringLength(250, ErrorMessage="欄位長度不得大於 250 個字元")]
         public string Email { get; set; }
-    
+        [UIHint("客戶分類")]
+        public string 客戶分類 { get; set; }
+
+        public string 帳號 { get; set; }
+        [DataType(DataType.Password)]
+        public string 密碼 { get; set; }
+
         public virtual ICollection<客戶銀行資訊> 客戶銀行資訊 { get; set; }
         public virtual ICollection<客戶聯絡人> 客戶聯絡人 { get; set; }
 

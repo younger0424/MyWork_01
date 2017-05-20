@@ -1,0 +1,6 @@
+﻿@model string
+@{
+    var items = new SelectList(ViewBag.客戶分類, "Value", "Text", Model);
+}
+
+@Html.DropDownList("", items, "無分類", new { @class = "form-control" }) 

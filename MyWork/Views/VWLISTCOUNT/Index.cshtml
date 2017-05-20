@@ -4,11 +4,24 @@
     ViewBag.Title = "Index";
 }
 
+
 <h2>Welcome !!</h2>
 
 <p>
     【隨時更新中】
 </p>
+
+<p>
+    @using (Html.BeginForm("Index", "VWLISTCOUNT", FormMethod.Get))
+    {
+    <p>
+       <!-- 客戶類別: @Html.DropDownList("客戶分類", "All")  -->
+        @Html.Editor("type" , "客戶分類")
+        @Html.TextBox("keyword" , null, new { type = "search" , placeholder = "請輸入關鍵字", @class = "form - control text" })
+              <input type="submit" value="查詢" class="btn  btn-default " />
+    </p>
+    }
+
 <table class="table">
     <tr>
         <th>

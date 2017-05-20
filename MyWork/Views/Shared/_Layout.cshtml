@@ -8,6 +8,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <meta name="description" content="The description of my page" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -28,7 +29,7 @@
                     <li>@Html.ActionLink("客戶資料管理", "Index", "客戶資料")</li>
                     <li>@Html.ActionLink("客戶聯絡人管理", "Index", "客戶聯絡人")</li>
                     <li>@Html.ActionLink("客戶銀行帳戶管理", "Index", "客戶銀行資訊")</li>
-                    <li>@Html.ActionLink("LIST", "Index", "VWLISTCOUNT")</li>
+                    <li>@Html.ActionLink("客戶資料列表", "Index", "VWLISTCOUNT")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
