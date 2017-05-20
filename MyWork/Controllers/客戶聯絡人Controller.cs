@@ -24,10 +24,14 @@ namespace MyWork.Controllers
         }
 
         // GET: 客戶聯絡人
-        public ActionResult Index()
+        public ActionResult Index(int? 客戶Id)
         {
             //var 客戶聯絡人 = db.客戶聯絡人.Include(客 => 客.客戶資料).Where(p => p.是否已刪除 == false);
             var 客戶聯絡人 = repo.All();
+            if (客戶Id.HasValue)
+            {
+                客戶聯絡人.Where(p => p.客戶Id == 客戶Id);
+            }
             return View(客戶聯絡人.ToList());
         }
 
@@ -54,8 +58,7 @@ namespace MyWork.Controllers
             return View();
         }
 
-        // POST: 客戶聯絡人/Create
-        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+        // POST: 客戶聯絡人/客戶聯絡人批次更新ViewModel
         // 詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
